@@ -19,3 +19,4 @@ If you are developing a production application, we recommend using TypeScript wi
 # Vibeo_frontend_responsive
 # Vibeo_frontend_responsive
 # Vibeo_frontend_responsive
+# Vibeo_frontend_responsive
