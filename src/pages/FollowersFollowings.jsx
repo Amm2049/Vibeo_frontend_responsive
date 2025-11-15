@@ -200,7 +200,10 @@ export default function FollowersFollowings() {
                 variant="outlined"
                 size="small"
                 startIcon={<FollowIcon />}
-                onClick={() => handleFollow(user)}
+                onClick={(e) => {
+e.stopPropagation()
+                  handleFollow(user)
+                }}
                 sx={{
                   borderColor: "rgba(255,255,255,0.2)",
                   color: "text.primary",
@@ -221,7 +224,8 @@ export default function FollowersFollowings() {
                   startIcon={
                     user.isFollowing ? <FollowingIcon /> : <FollowIcon />
                   }
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     if (user.isFollowing) {
                       handleUnfollow(user);
                     } else {
