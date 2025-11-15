@@ -14,6 +14,7 @@ import Login from "./pages/SignIn";
 import BottomNav from "./components/BottomNav";
 import { apiUrl, AppContext, useApp } from "./useApp";
 import { useEffect, useState } from "react";
+import ProfileDetail from "./pages/ProfileDetail";
 
 function RequireAuth({ children }) {
   const location = useLocation();
@@ -119,6 +120,14 @@ export default function App() {
               element={
                 <RequireAuth>
                   <Profile />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/users/profile/:id"
+              element={
+                <RequireAuth>
+                  <ProfileDetail />
                 </RequireAuth>
               }
             />

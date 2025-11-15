@@ -17,6 +17,7 @@ import {
   Cancel as CancelIcon,
 } from "@mui/icons-material";
 import { apiUrl, useApp } from "../useApp";
+import ProfileSkeleton from "../components/ProfileSkeleton";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -114,11 +115,7 @@ export default function Profile() {
   }, [user]);
 
   if (!user) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
-        <CircularProgress />
-      </Box>
-    );
+    return <ProfileSkeleton />;
   }
 
   return (
@@ -392,7 +389,7 @@ export default function Profile() {
       <Divider sx={{ borderColor: "rgba(255,255,255,0.1)", my: 3 }} />
 
       <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
-        Images
+        Posts
       </Typography>
 
       <Box
@@ -402,11 +399,15 @@ export default function Profile() {
           gap: 1,
         }}
       >
-        {user.stats.images.map((image, index) => (
-          <Link key={index} style={{ display: "block" }}>
+        {user.contentsInfo.map((content, index) => (
+          <Link
+            key={index}
+            to={`/post/${content.id}`}
+            style={{ display: "block" }}
+          >
             <Box
               component="img"
-              src={image}
+              src={content.photo_url}
               alt="Post"
               sx={{
                 width: "100%",

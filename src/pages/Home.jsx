@@ -17,6 +17,7 @@ import {
 } from "@mui/icons-material";
 import { apiUrl, useApp } from "../useApp";
 import { formatDistanceToNow } from "date-fns";
+import HomeSkeleton from "../components/HomeSkeleton";
 
 export default function Home() {
   const theme = useTheme();
@@ -180,6 +181,10 @@ export default function Home() {
     );
   }
 
+  if (loading) {
+    return <HomeSkeleton />;
+  }
+
   return (
     <Box
       sx={{
@@ -324,15 +329,6 @@ export default function Home() {
           </Box>
         );
       })}
-
-      {/* Loading indicator */}
-      {loading && (
-        <Box sx={{ textAlign: "center", py: 3 }}>
-          <Typography variant="body2" color="text.secondary">
-            Loading more posts...
-          </Typography>
-        </Box>
-      )}
 
       {/* End of posts message */}
       {!hasMore && posts.length > 0 && (

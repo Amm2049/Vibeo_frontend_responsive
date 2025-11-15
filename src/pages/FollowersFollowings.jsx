@@ -21,6 +21,7 @@ import {
   Check as FollowingIcon,
 } from "@mui/icons-material";
 import { apiUrl } from "../useApp";
+import FollowersFollowingSkeleton from "../components/FollowersFollowingSkeleton";
 
 export default function FollowersFollowings() {
   const navigate = useNavigate();
@@ -154,6 +155,7 @@ export default function FollowersFollowings() {
       <List sx={{ p: 0, mt: 1 }}>
         {users.map((user) => (
           <ListItem
+            onClick={() => navigate(`/users/profile/${user.id}`)}
             key={user.id}
             sx={{
               px: 0,
@@ -163,6 +165,7 @@ export default function FollowersFollowings() {
               "&:hover": {
                 bgcolor: "rgba(255,255,255,0.03)",
               },
+              cursor: "pointer",
             }}
           >
             <ListItemAvatar>
@@ -252,11 +255,7 @@ export default function FollowersFollowings() {
   };
 
   if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-        <Typography>Loading...</Typography>
-      </Box>
-    );
+    return <FollowersFollowingSkeleton />;
   }
 
   return (

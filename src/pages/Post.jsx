@@ -21,6 +21,7 @@ import {
 } from "@mui/icons-material";
 import { apiUrl } from "../useApp";
 import { useEffect } from "react";
+import PostSkeleton from "../components/PostSkeleton";
 
 export default function Post() {
   const { id } = useParams();
@@ -93,23 +94,12 @@ export default function Post() {
       });
   }, [id]);
 
-  if (!post)
-    return (
-      <Box
-        sx={{
-          textAlign: "center",
-          py: 6,
-          color: "text.secondary",
-        }}
-      >
-        <Typography variant="body1">Loading</Typography>
-      </Box>
-    );
+  if (!post) return <PostSkeleton />;
 
   return (
     <Box
       sx={{
-        maxWidth: 600,
+        maxWidth: 500,
         mx: "auto",
         py: 3,
         px: 2,
